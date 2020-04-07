@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 		moviesList2.add("AAAAAAAAAAAAAAAA");
 		moviesList2.add("AAAAAAAAAAAAAAAA");
 		moviesList2.add("AAAAAAAAAAAAAAAA");
+		moviesList2.add("AAAAAAAAAAAAAAAA");
 
 
 		recyclerView = findViewById(R.id.act_main_recycler);
