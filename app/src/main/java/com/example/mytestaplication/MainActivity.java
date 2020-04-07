@@ -54,11 +54,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapterV2
 		recyclerAdapter = new RecyclerAdapterV2(moviesList, this);
 
 		recyclerView.setAdapter(recyclerAdapter);
-		recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+//		recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+		recyclerView.addItemDecoration(new VerticalSpacingItemDecorator(10));
 
 
-//		DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-//		recyclerView.addItemDecoration(dividerItemDecoration);
+
+
 
 	}
 
