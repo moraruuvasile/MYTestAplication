@@ -1,29 +1,30 @@
 package com.example.mytestaplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerAdapterV2.RecyclerViewClickInterface{
 
 	RecyclerView recyclerView;
 	RecyclerAdapterV2 recyclerAdapter;
 
-	List<String> moviesList, moviesList2;
+	List<String> moviesList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+
 		moviesList = new ArrayList<>();
+
 		moviesList.add("Iron Man");
 		moviesList.add("The Incredible Hulk");
 		moviesList.add("Iron Man 2");
@@ -48,55 +49,23 @@ public class MainActivity extends AppCompatActivity {
 		moviesList.add("Avengers: Endgame");
 		moviesList.add("Spider-Man: Far From Home");
 
-		moviesList2 = new ArrayList<>();
-		moviesList2.add("AAAAAAAAAAAAAAAA");
-		moviesList2.add("AAAAAAAAAAAAAAAA");
-		moviesList2.add("AAAAAAAAAAAAAAAA");
-		moviesList2.add("AAAAAAAAAAAAAAAA");
-		moviesList2.add("AAAAAAAAAAAAAAAA");
-		moviesList2.add("AAAAAAAAAAAAAAAA");
-		moviesList2.add("AAAAAAAAAAAAAAAA");
-		moviesList2.add("AAAAAAAAAAAAAAAA");
-
-
 		recyclerView = findViewById(R.id.act_main_recycler);
-		recyclerAdapter = new RecyclerAdapterV2();
-//		recyclerView.setLayoutManager(new GridLayoutManager());
+		recyclerView.setLayoutManager(new LinearLayoutManager(this));
+		recyclerAdapter = new RecyclerAdapterV2(moviesList, this);
 
 		recyclerView.setAdapter(recyclerAdapter);
-		recyclerAdapter.setMovieList(moviesList);
-		Vasea vasea = new Vasea(recyclerAdapter, moviesList2);
-		vasea.execute();
+		recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
 
 //		DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
 //		recyclerView.addItemDecoration(dividerItemDecoration);
 
 	}
 
-
-	private class Vasea extends AsyncTask<String, Void, String>	{
-		RecyclerAdapterV2 recyclerAdapter;
-
-		List<String> moviesList;
-
-		public Vasea(RecyclerAdapterV2 recyclerAdapter, List<String> moviesList) {
-			this.recyclerAdapter = recyclerAdapter;
-			this.moviesList = moviesList;
-		}
-
-		@Override
-		protected String doInBackground(String... strings) throws IllegalStateException {
-			System.out.println("AAAAA");
-			try {
-				Thread.sleep(99);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			System.out.println("BBBBBBB");
-
-			recyclerAdapter.setMovieList(moviesList);
-			recyclerAdapter.notifyDataSetChanged();
-			return null;
-		}
+	@Override
+	public void onItemLongClick(int position) {
+		moviesList.remove(position);
+		recyclerAdapter.notifyDataSetChanged();
+//		recyclerAdapter.notifyItemRemoved(position);
 	}
 }
