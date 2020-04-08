@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity{
 		recyclerAdapter = new RecyclerAdapterV2(moviesList);
 
 		recyclerView.setAdapter(recyclerAdapter);
-//		recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-		recyclerView.addItemDecoration(new VerticalSpacingItemDecorator(10));
+		recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+//		recyclerView.addItemDecoration(new VerticalSpacingItemDecorator(10));
 
 	}
 
