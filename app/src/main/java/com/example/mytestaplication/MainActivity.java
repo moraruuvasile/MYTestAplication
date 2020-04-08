@@ -10,7 +10,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements RecyclerAdapterV2.RecyclerViewClickInterface{
+public class MainActivity extends AppCompatActivity{
 
 	RecyclerView recyclerView;
 	RecyclerAdapterV2 recyclerAdapter;
@@ -51,22 +51,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapterV2
 
 		recyclerView = findViewById(R.id.act_main_recycler);
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
-		recyclerAdapter = new RecyclerAdapterV2(moviesList, this);
+		recyclerAdapter = new RecyclerAdapterV2(moviesList);
 
 		recyclerView.setAdapter(recyclerAdapter);
 //		recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 		recyclerView.addItemDecoration(new VerticalSpacingItemDecorator(10));
 
-
-
-
-
 	}
 
-	@Override
-	public void onItemLongClick(int position) {
-		moviesList.remove(position);
-		recyclerAdapter.notifyDataSetChanged();
-//		recyclerAdapter.notifyItemRemoved(position);
-	}
 }
